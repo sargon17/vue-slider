@@ -33,12 +33,21 @@ let sliderApp = new Vue({
     slideActiveId: 0,
   },
   methods: {
+    setSlidesId: function () {
+      let id = 0;
+      this.slides.forEach((slide) => {
+        slide.id = `${id}`;
+        // console.log(slide.id);
+        id++;
+      });
+    },
     nextPage: function () {
       if (this.slideActiveId < slides.length - 1) {
         this.slideActiveId++;
       } else {
         this.slideActiveId = 0;
       }
+      this.checkSlide();
     },
     prevPage: function () {
       if (this.slideActiveId > 0) {
@@ -47,5 +56,24 @@ let sliderApp = new Vue({
         this.slideActiveId = slides.length - 1;
       }
     },
+    autoSlide: function () {
+      setInterval(this.nextPage, 3000);
+    },
+    checkSlide: function () {
+      let elements = document.querySelectorAll(".thumb");
+      elements.forEach((element, index) => {
+        console.log("this is the index:", index);
+        element.className = `${
+          index == this.slideActiveId ? "thumb active" : "thumb"
+        }`;
+        console.log(element.id);
+        console.log(this.slideActiveId);
+      });
+      //   console.log(elements);
+    },
   },
 });
+
+sliderApp.setSlidesId();
+sliderApp.autoSlide();
+sliderApp.checkSlide();
