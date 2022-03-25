@@ -37,7 +37,6 @@ let sliderApp = new Vue({
       let id = 0;
       this.slides.forEach((slide) => {
         slide.id = `${id}`;
-        // console.log(slide.id);
         id++;
       });
     },
@@ -62,14 +61,9 @@ let sliderApp = new Vue({
     checkSlide: function () {
       let elements = document.querySelectorAll(".thumb");
       elements.forEach((element, index) => {
-        console.log("this is the index:", index);
-        element.className = `${
-          index == this.slideActiveId ? "thumb active" : "thumb"
-        }`;
-        console.log(element.id);
-        console.log(this.slideActiveId);
+        element.className =
+          index == this.slideActiveId ? "thumb active" : "thumb";
       });
-      //   console.log(elements);
     },
   },
 });
