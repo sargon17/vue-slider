@@ -56,7 +56,10 @@ let sliderApp = new Vue({
       }
     },
     autoSlide: function () {
-      setInterval(this.nextPage, 3000);
+      interval = setInterval(this.nextPage, 3000);
+    },
+    blockAutoSlide: function () {
+      clearInterval(interval);
     },
     checkSlide: function () {
       let elements = document.querySelectorAll(".thumb");
